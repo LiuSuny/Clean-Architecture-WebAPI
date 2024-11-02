@@ -1,4 +1,4 @@
-﻿using Restaurant.Application.Dish.Dtos;
+﻿using Restaurant.Application.Dishess.Dtos;
 using Restaurant.Domain.Entities;
 
 
@@ -17,22 +17,24 @@ namespace Restaurant.Application.Restaurantss.Dtos
         public List<DishDto> Dishes { get; set; } = [];
 
 
-        public static RestaurantDto? FromEntity(Restaurants? restaurant)
-        {
-            if (restaurant == null) return null;
-            return new RestaurantDto()
-            {
-                Category = restaurant.Category,
-                Description = restaurant.Description,
-                Id = restaurant.Id,
-                HasDelivery = restaurant.HasDelivery,
-                Name = restaurant.Name,
-                City = restaurant.Address?.City,
-                Steet = restaurant.Address?.Steet,
-                PostalCode = restaurant.Address?.PostalCode,
+        #region Manual mapping without automapper library
+        //public static RestaurantDto? FromEntity(Restaurants? restaurant)
+        //{
+        //    if (restaurant == null) return null;
+        //    return new RestaurantDto()
+        //    {
+        //        Category = restaurant.Category,
+        //        Description = restaurant.Description,
+        //        Id = restaurant.Id,
+        //        HasDelivery = restaurant.HasDelivery,
+        //        Name = restaurant.Name,
+        //        City = restaurant.Address?.City,
+        //        Steet = restaurant.Address?.Steet,
+        //        PostalCode = restaurant.Address?.PostalCode,
 
-                Dishes = restaurant.Dishes.Select(DishDto.FromEntity).ToList()
-            };
-        }
+        //        Dishes = restaurant.Dishes.Select(DishDto.FromEntity).ToList()
+        //    };
+        //} 
+        #endregion
     }
 }

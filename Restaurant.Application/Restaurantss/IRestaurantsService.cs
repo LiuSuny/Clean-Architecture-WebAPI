@@ -12,6 +12,6 @@ namespace Restaurant.Application.Restaurantss
     {
         Task<IEnumerable<RestaurantDto>> GetAllRestaurants();
         Task<RestaurantDto?> GetByIdRestaurants(int id);
-
+        Task<int> Create(CreateRestaurantDto dto);
     }
 }

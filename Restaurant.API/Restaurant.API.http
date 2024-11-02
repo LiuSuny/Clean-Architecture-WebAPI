@@ -9,3 +9,19 @@ GET {{Restaurant.API_HostAddress}}/api/restaurants
 ###
 GET {{Restaurant.API_HostAddress}}/api/restaurants/1
 ###
+
+POST {{Restaurant.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+{
+     "Name": "Tasty Bites",
+      "Description": "A cozy restaurant serving a variety of delicious dishes.",
+      "Category": "Indian",
+      "HasDelivery": true,
+      "ContactEmail": "info@test.com",
+      "ContactNumber": "555-1234",
+      "City": "New York",
+      "Street": "123 Main Street",
+      "PostalCode": "10-010"
+}
+###
+GET https://localhost:7237/api/restaurants/4
