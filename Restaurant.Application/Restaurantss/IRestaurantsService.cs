@@ -10,8 +10,8 @@ namespace Restaurant.Application.Restaurantss
 {
     public interface IRestaurantsService
     {
-        Task<IEnumerable<RestaurantDto>> GetAllRestaurants();
-        Task<RestaurantDto?> GetByIdRestaurants(int id);
-        Task<int> Create(CreateRestaurantDto dto);
+        //Task<IEnumerable<RestaurantDto>> GetAllRestaurants();
+        //Task<RestaurantDto?> GetByIdRestaurants(int id);
+        //Task<int> Create(CreateRestaurantDto dto);
     }
 }

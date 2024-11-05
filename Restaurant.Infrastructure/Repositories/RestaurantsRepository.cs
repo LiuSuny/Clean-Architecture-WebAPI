@@ -20,6 +20,14 @@ namespace Restaurant.Infrastructure.Repositories
             return entity.Id;
         }
 
+        public async Task DeleteRestaurantAsync(Restaurants entity)
+        {
+         
+            dbContext.Remove(entity);
+            await dbContext.SaveChangesAsync();
+            
+        }
+
         public async Task<IEnumerable<Restaurants>> GetAllAsync()
         {
             var restaurants = await dbContext.Restaurants.ToListAsync();
@@ -32,5 +40,8 @@ namespace Restaurant.Infrastructure.Repositories
                 .Include(r => r.Dishes)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public Task UpdateChanges() => dbContext.SaveChangesAsync();
+        
     }
 }

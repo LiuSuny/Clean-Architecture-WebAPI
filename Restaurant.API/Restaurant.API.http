@@ -7,7 +7,7 @@
 GET {{Restaurant.API_HostAddress}}/api/restaurants
 
 ###
-GET {{Restaurant.API_HostAddress}}/api/restaurants/1
+GET {{Restaurant.API_HostAddress}}/api/restaurants/6
 ###
 
 POST {{Restaurant.API_HostAddress}}/api/restaurants
@@ -24,4 +24,15 @@ Content-Type: application/json
       "PostalCode": "10-010"
 }
 ###
-GET https://localhost:7237/api/restaurants/4
+DELETE {{Restaurant.API_HostAddress}}/api/restaurants/6
+###
+GET https://localhost:7237/api/restaurants/3
+
+###
+PATCH {{Restaurant.API_HostAddress}}/api/restaurants/3
+Content-Type: application/json
+{
+  "Name": "Sample patch",
+  "Description": "This is a sample restaurant description.",
+  "HasDelivery": true
+}
