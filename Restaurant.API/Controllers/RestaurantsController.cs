@@ -19,7 +19,7 @@ namespace Restaurant.API.Controllers
     {
       
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
         {
             //var restaurants = await restaurantsService.GetAllRestaurants();
             var restaurants = await mediatr.Send( new GetAllRestaurantQuery());
@@ -29,7 +29,7 @@ namespace Restaurant.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetbyId([FromRoute]int id)
+        public async Task<ActionResult<RestaurantDto?>> GetbyId([FromRoute]int id)
         {
             // var restaurants = await restaurantsService.GetByIdRestaurants(id);
             var restaurants = await mediatr.Send(new GetRestaurantByIdQuery(id));
@@ -53,27 +53,37 @@ namespace Restaurant.API.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
         {
-         
-            var isDeleted = await mediatr.Send(new DeleteRestaurantCommand(id));
-          
-            if (isDeleted) return NoContent();
-            return NotFound();
 
+            //var isDeleted = await mediatr.Send(new DeleteRestaurantCommand(id));
+
+            // if (isDeleted) return NoContent();
+            //return NotFound();
+
+           await mediatr.Send(new DeleteRestaurantCommand(id));
+
+            return NoContent();
 
         }
 
         [HttpPatch]
         [Route("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateRestaurant([FromRoute] int id, UpdateRestaurantCommand command)
         {
+            //command.Id = id; //UpdateRestaurantCommand is equal to this route id 
+            //var isUpdated = await mediatr.Send(command);
+
+            //if (isUpdated) return NoContent();
+            //return NotFound();
+
             command.Id = id; //UpdateRestaurantCommand is equal to this route id 
-            var isUpdated = await mediatr.Send(command);
-
-            if (isUpdated) return NoContent();
-            return NotFound();
-
+            await mediatr.Send(command);
+            return NoContent();
 
         }
     }
