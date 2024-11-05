@@ -51,3 +51,19 @@ Content-Type: application/json
 GET https://localhost:7237/api/restaurants/3/dishes
 ###
 DELETE {{Restaurant.API_HostAddress}}/api/restaurants/3/dishes
+
+###
+POST {{Restaurant.API_HostAddress}}/api/identity/register
+Content-Type: application/json
+{
+    "email": "testusers@test.com",
+    "password": "Password1!"
+}
+
+###
+POST {{Restaurant.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+{
+    "email": "testusers@test.com",
+    "password": "Password1!"
+}
