@@ -26,7 +26,7 @@ Content-Type: application/json
 ###
 DELETE {{Restaurant.API_HostAddress}}/api/restaurants/6
 ###
-GET https://localhost:7237/api/restaurants/7
+GET https://localhost:7237/api/restaurants/3
 
 ###
 PATCH {{Restaurant.API_HostAddress}}/api/restaurants/3
@@ -36,3 +36,18 @@ Content-Type: application/json
   "Description": "This is a sample restaurant description.",
   "HasDelivery": true
 }
+
+###
+POST {{Restaurant.API_HostAddress}}/api/restaurants/3/dishes
+Content-Type: application/json
+{
+  "Name": "Spaghetti Rome",
+  "Description": "Classic Italian pasta dish with rich meat sauce",
+  "Price": 12.99,
+  "KiloCalories": 0
+}
+
+###
+GET https://localhost:7237/api/restaurants/3/dishes
+###
+DELETE {{Restaurant.API_HostAddress}}/api/restaurants/3/dishes

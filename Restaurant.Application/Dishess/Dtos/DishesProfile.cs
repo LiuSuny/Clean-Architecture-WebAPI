@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Restaurant.Application.Dishess.Commands.CreateDish;
 using Restaurant.Application.Restaurantss.Dtos;
 using Restaurant.Domain.Entities;
 using System;
@@ -13,6 +14,7 @@ namespace Restaurant.Application.Dishess.Dtos
     {
         public DishesProfile ()
         {
+            CreateMap<CreateDishesCommand, Dish>();
             CreateMap<Dish, DishDto>();
                      
         }
