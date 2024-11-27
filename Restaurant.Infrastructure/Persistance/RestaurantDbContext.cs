@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Domain;
 using Restaurant.Domain.Entities;
+using Restaurant.Infrastructure.Config;
 
 namespace Restaurant.Infrastructure.Persistance
 {
@@ -14,6 +15,7 @@ namespace Restaurant.Infrastructure.Persistance
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DishConfiguration).Assembly);
 
             modelBuilder.Entity<Restaurants>()
              //this relation indicate that address model is owned by restaurants hence no need to add Id

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions.Common;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,7 @@ namespace Restaurant.Infrastructure.Extensions
                 .EnableSensitiveDataLogging());
 
             services.AddIdentityApiEndpoints<User>()
+                 .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<RestaurantDbContext>();
 
             services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();

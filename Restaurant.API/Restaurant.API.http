@@ -1,5 +1,6 @@
 @host = https://localhost
 @port = 7237
+@token =CfDJ8N_g_kqWmplNik__Rv_doJ4EA9guwJNUehBd4W5kHVMqP0tU7u8cUv5hNPmL568o-U6B1Qq5TzvEiav9USYnGoBucyRUG3rYT0oC9jhK8aMqHutE10qqsxCA9_uzY3QxlstmWudElgCqYAjheqtx8mBGJxCBpI1qQXs67BMYHSQNrvM4SWV0aQdW70ATpenLhG-xdmxJ-8c9h7NzJJx4it3l5m4P36x04Fyo1B1-TJlq_5S16CfK7sNS4bA6d27LX0l7arsl4qyeFVOCHMIR0jlFvhrzjbawQYRZO8NWsJ2ZDUEVXsRanmH4bH-MDQmdyAXbMtPVk_E8qH_fILYRndp6cRCnFq7jp2gJyuaegQ8MC6doNmI3osIN11T8lFGY6-Zp57gMab8pBiYntKVE0ho4w4c6oYW8WwgeyDkvriw9GWPAvj0aDzCi0oj0yIMbQyvzBmmwVcHgx8qgf7HGt2c9Ri7GcWtNJYZ-Xte6v7P5_d9UjHwoEQUs2dmmjgt2CgJWgLRB79z8D0wmWJuRLNr02M7syr7BsIcI-fn-lmCn2EmA7CQu0BoqMWd5l63Gx7j3-yUMk7bLOQRfZoSgX9hhuBd62BLTnbarbNDgm6amdiCz25OCVMKyYTXm9m034o4pufNJw6scwqQP-BjRJ47hdLGjCBB8TjVL4fG3FKGZ-Cnc1lo4WY38skksANmxYg
 
 @Restaurant.API_HostAddress = https://localhost:7237
 
@@ -11,6 +12,7 @@ GET {{Restaurant.API_HostAddress}}/api/restaurants/6
 ###
 
 POST {{Restaurant.API_HostAddress}}/api/restaurants
+Authorization: Bearer {{token}}
 Content-Type: application/json
 {
      "Name": "Tasty Bites56",
@@ -56,7 +58,7 @@ DELETE {{Restaurant.API_HostAddress}}/api/restaurants/3/dishes
 POST {{Restaurant.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 {
-    "email": "testusers@test.com",
+    "email": "user@test.com",
     "password": "Password1!"
 }
 
@@ -64,6 +66,14 @@ Content-Type: application/json
 POST {{Restaurant.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 {
-    "email": "testusers@test.com",
+     "email": "admin@test.com",
+    "password": "Password1!"
+}
+
+###
+POST {{Restaurant.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+{
+    "email": "owner@test.com",
     "password": "Password1!"
 }

@@ -10,13 +10,14 @@ using Restaurant.Application.Restaurantss.Commands.UpdateRestaurant;
 using Restaurant.Application.Restaurantss.Dtos;
 using Restaurant.Application.Restaurantss.Queries.GetAllRestaurant;
 using Restaurant.Application.Restaurantss.Queries.GetRestaurantById;
+using Restaurant.Domain.Constants;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Restaurant.API.Controllers
 {    
     [ApiController]
     [Route("api/restaurants")]
-    //[Authorize]
+    [Authorize]
     public class RestaurantsController(/*IRestaurantsService restaurantsService*/ IMediator mediatr) : ControllerBase
     {
       
@@ -47,6 +48,7 @@ namespace Restaurant.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = UserRoles.Owner)]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand command)
         {
             // int id = await restaurantsService.Create(createRestaurantDto);
