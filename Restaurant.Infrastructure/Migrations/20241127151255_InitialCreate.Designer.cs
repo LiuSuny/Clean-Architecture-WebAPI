@@ -12,7 +12,7 @@ using Restaurant.Infrastructure.Persistance;
 namespace Restaurant.Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20241126063107_InitialCreate")]
+    [Migration("20241127151255_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -219,7 +219,12 @@ namespace Restaurant.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Restaurants");
                 });
@@ -357,6 +362,10 @@ namespace Restaurant.Infrastructure.Migrations
 
             modelBuilder.Entity("Restaurant.Domain.Entities.Restaurants", b =>
                 {
+                    b.HasOne("Restaurant.Domain.User", "Owner")
+                        .WithMany("OwnedRestaurants")
+                        .HasForeignKey("OwnerId");
+
                     b.OwnsOne("Restaurant.Domain.Entities.Address", "Address", b1 =>
                         {
                             b1.Property<int>("RestaurantsId")
@@ -383,11 +392,18 @@ namespace Restaurant.Infrastructure.Migrations
                         });
 
                     b.Navigation("Address");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Restaurant.Domain.Entities.Restaurants", b =>
                 {
                     b.Navigation("Dishes");
+                });
+
+            modelBuilder.Entity("Restaurant.Domain.User", b =>
+                {
+                    b.Navigation("OwnedRestaurants");
                 });
 #pragma warning restore 612, 618
         }

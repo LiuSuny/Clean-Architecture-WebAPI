@@ -21,7 +21,7 @@ var app = builder.Build();
 //Seeding data 
 var scope = app.Services.CreateScope(); //creating service scope
 var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>(); //required service
-await seeder.Seed(); //seed it 
+await seeder.Seed(); //seed it    
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<RequestTimeLoggingMiddleware>();

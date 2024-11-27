@@ -11,10 +11,11 @@ using Restaurant.Application.Restaurantss.Dtos;
 using Restaurant.Application.Restaurantss.Queries.GetAllRestaurant;
 using Restaurant.Application.Restaurantss.Queries.GetRestaurantById;
 using Restaurant.Domain.Constants;
+using Restaurant.Infrastructure.Authorization.Constants;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Restaurant.API.Controllers
-{    
+{
     [ApiController]
     [Route("api/restaurants")]
     [Authorize]
@@ -22,7 +23,8 @@ namespace Restaurant.API.Controllers
     {
       
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        [Authorize(Policy = PolicyNames.CreatedAtleast2Restaurants)]
         public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
         {
             //var restaurants = await restaurantsService.GetAllRestaurants();
@@ -33,6 +35,7 @@ namespace Restaurant.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Policy = PolicyNames.HasNationality)]
         public async Task<ActionResult<RestaurantDto?>> GetbyId([FromRoute]int id)
         {
             // var restaurants = await restaurantsService.GetByIdRestaurants(id);
@@ -48,7 +51,7 @@ namespace Restaurant.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = UserRoles.Owner)]
+        //[Authorize(Roles = UserRoles.Owner)]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand command)
         {
             // int id = await restaurantsService.Create(createRestaurantDto);

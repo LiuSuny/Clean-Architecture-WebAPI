@@ -1,11 +1,13 @@
 @host = https://localhost
 @port = 7237
-@token =CfDJ8N_g_kqWmplNik__Rv_doJ4EA9guwJNUehBd4W5kHVMqP0tU7u8cUv5hNPmL568o-U6B1Qq5TzvEiav9USYnGoBucyRUG3rYT0oC9jhK8aMqHutE10qqsxCA9_uzY3QxlstmWudElgCqYAjheqtx8mBGJxCBpI1qQXs67BMYHSQNrvM4SWV0aQdW70ATpenLhG-xdmxJ-8c9h7NzJJx4it3l5m4P36x04Fyo1B1-TJlq_5S16CfK7sNS4bA6d27LX0l7arsl4qyeFVOCHMIR0jlFvhrzjbawQYRZO8NWsJ2ZDUEVXsRanmH4bH-MDQmdyAXbMtPVk_E8qH_fILYRndp6cRCnFq7jp2gJyuaegQ8MC6doNmI3osIN11T8lFGY6-Zp57gMab8pBiYntKVE0ho4w4c6oYW8WwgeyDkvriw9GWPAvj0aDzCi0oj0yIMbQyvzBmmwVcHgx8qgf7HGt2c9Ri7GcWtNJYZ-Xte6v7P5_d9UjHwoEQUs2dmmjgt2CgJWgLRB79z8D0wmWJuRLNr02M7syr7BsIcI-fn-lmCn2EmA7CQu0BoqMWd5l63Gx7j3-yUMk7bLOQRfZoSgX9hhuBd62BLTnbarbNDgm6amdiCz25OCVMKyYTXm9m034o4pufNJw6scwqQP-BjRJ47hdLGjCBB8TjVL4fG3FKGZ-Cnc1lo4WY38skksANmxYg
+@token =CfDJ8N_g_kqWmplNik__Rv_doJ4b60bzOr6Z4a605aTNfv6vOxI6dlFSytvAlDJmdp5vkcBt0vC_UJe-82KsbrT5FwW_Ljd7X3TVe-_aeq8MnvqaK_sW9RNHKwBxuOkWPLSxJOk91RiY7PG7fo310Wg2blJND05yJlv9d47KJolGISO1LLZ7_xDceS94oJPztnrKzoaB3_HORfM2sjbwT1kWJ3mttefPJSGlv-YrndU-qGg_5W-k9EG7kruBrvZ_7jajHaSslQq-H0qoVcbFa9z7KwNqpfvwQl1pPfrpG3NZXAnAQcP-JwrUN-UGIWEaRzJHz4oivfBpxC0smrhqpVv328GtXKY3ns37SndoMoo1SqapA409zrae-FIqbAdKUyCqfzlGF0gmDdmbkTQMuY0KIrAaurbPDoByiU48YJSwhVIgcFr-xCA9ifb6TJEoSfXlvirFatmy3kECdGgFw28UY6_Lydb1z3bHBebak9KH_ToOSsb9Qs9NyKTfJ-ZWirWtfaugdxYaOLDTPtowDaX7QpEjrhkp68BsjD9KSdJYFuGSu1HLPiNJqbIzRDkYIvj9V2eaLf1UdItUbV2V0EgpzOe9xQfGaUjzjqeLm-GPLRdtZjV9W52k0hxU411qrUqP9A8jAhUw_O41GT2m_t-GekFoETUSvzUf2k-RUxtj5N0FI8lfFaCkJoxTSLYOTczO3w
 
 @Restaurant.API_HostAddress = https://localhost:7237
 
 
 GET {{Restaurant.API_HostAddress}}/api/restaurants
+Authorization: Bearer {{token}}
+
 
 ###
 GET {{Restaurant.API_HostAddress}}/api/restaurants/6
@@ -58,22 +60,40 @@ DELETE {{Restaurant.API_HostAddress}}/api/restaurants/3/dishes
 POST {{Restaurant.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 {
-    "email": "user@test.com",
-    "password": "Password1!"
-}
-
-###
-POST {{Restaurant.API_HostAddress}}/api/identity/login
-Content-Type: application/json
-{
-     "email": "admin@test.com",
-    "password": "Password1!"
-}
-
-###
-POST {{Restaurant.API_HostAddress}}/api/identity/login
-Content-Type: application/json
-{
     "email": "owner@test.com",
     "password": "Password1!"
 }
+
+###
+POST {{Restaurant.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+{
+     "email": "owner@test.com",
+    "password": "Password1!"
+}
+
+###
+POST {{Restaurant.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+{
+    "email": "testuser@test.com",
+    "password": "Password1!"
+}
+
+###
+PATCH {{Restaurant.API_HostAddress}}/api/identity/user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "Nationality": "French",
+  "DateOfBirth": "2010-01-01"
+}
+###
+POST {{Restaurant.API_HostAddress}}/api/identity/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "UserEmail": "owner2@test.com",
+  "RoleName": "Owner"
+}
+###
