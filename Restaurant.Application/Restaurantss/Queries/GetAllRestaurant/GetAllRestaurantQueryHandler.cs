@@ -18,8 +18,11 @@ namespace Restaurant.Application.Restaurantss.Queries.GetAllRestaurant
     {
         public async Task<IEnumerable<RestaurantDto>> Handle(GetAllRestaurantQuery request, CancellationToken cancellationToken)
         {
+            //var searchPhrase = request.SearchPhrase.ToLower();
             logger.LogInformation("Getting all restaurants");
-            var restaurants = await restaurantsRepository.GetAllAsync();
+            var restaurants = await restaurantsRepository.GetAllMatchingAsync(request.SearchPhrase);
+                              //.Where(x => x.Name.ToLower().Contains(request.SearchPhrase) ||
+                              //x.Description.Contains(request.SearchPhrase));
 
             //var restaurantsDtos = restaurants.Select(RestaurantDto.FromEntity); //used for manual mapping
 

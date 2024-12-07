@@ -23,12 +23,13 @@ namespace Restaurant.API.Controllers
     {
       
         [HttpGet]
-        //[AllowAnonymous]
-        [Authorize(Policy = PolicyNames.CreatedAtleast2Restaurants)]
-        public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
+        [AllowAnonymous]
+       // [Authorize(Policy = PolicyNames.CreatedAtleast2Restaurants)]
+        public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll(
+            [FromQuery] GetAllRestaurantQuery query)
         {
             //var restaurants = await restaurantsService.GetAllRestaurants();
-            var restaurants = await mediatr.Send( new GetAllRestaurantQuery());
+            var restaurants = await mediatr.Send(query);
 
             return Ok(restaurants);
         }
