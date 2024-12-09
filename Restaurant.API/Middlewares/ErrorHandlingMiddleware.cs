@@ -15,7 +15,7 @@ namespace Restaurant.API.Middlewares
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync(notFound.Message);
                 logger.LogWarning(notFound.Message);
-            }
+            } 
             catch (ForbidException)
             {
                 context.Response.StatusCode = 403;
