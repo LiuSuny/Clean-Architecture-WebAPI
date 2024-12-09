@@ -24,7 +24,7 @@ namespace Restaurant.API.Controllers
       
         [HttpGet]
         [AllowAnonymous]
-       // [Authorize(Policy = PolicyNames.CreatedAtleast2Restaurants)]
+        [Authorize(Policy = PolicyNames.CreatedAtleast2Restaurants)]
         public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll(
             [FromQuery] GetAllRestaurantQuery query)
         {
